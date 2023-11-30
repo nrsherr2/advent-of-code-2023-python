@@ -19,7 +19,7 @@ with open("README.md", "w") as f:
     f.write(
         readme_content
         + """ 
-        ## Creating a new solution
+## Creating a new solution
 
 ```make new``` creates a new file for today, it checks for the files in `src/` and creates the "next int" one. On the first run it will create `01.py`, later `02.py`, and so on.
 
