@@ -1,6 +1,6 @@
 import os
 
-base_link = "https://github.com/<USERNAME>/<REPOSITORY_NAME>/blob/main/src/"
+base_link = "https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/"
 
 
 def parse(e):
@@ -18,5 +18,24 @@ readme_content += "\n".join(tmp)
 with open("README.md", "w") as f:
     f.write(
         readme_content
+        + """ 
+        ## Creating a new solution
+
+```make new``` creates a new file for today, it checks for the files in `src/` and creates the "next int" one. On the first run it will create `01.py`, later `02.py`, and so on.
+
+A new solution is initialized as follows: 
+```
+from utils.api import get_input
+
+input_str = get_input(1)
+
+# WRITE YOUR SOLUTION HERE
+```
+The `get_input` function takes a day and returns the content of the input for that day, this internally makes a request to obtain the input if it is not found on disk. 
+
+## Running a new solution
+
+From the main directory, run `python src/<DAY>.py`.
+        """
         + "\n\nCreated via: [advent-of-code-setup](https://github.com/tomfran/advent-of-code-setup)"
     )
