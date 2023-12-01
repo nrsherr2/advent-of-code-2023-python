@@ -7,7 +7,7 @@ help:
 setup: 
 	@touch session.cookie
 	@mkdir -p inputs
-	@mkdir -p test-inputs
+	@mkdir -p test_inputs
 	@make help
 
 new: 
