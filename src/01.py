@@ -73,5 +73,32 @@ for line in input_str.splitlines():
     part2Nums.append(int(fullNum))
 
 print(sum(part2Nums))
-# WRITE YOUR SOLUTION HERE
+
 print("--- %s seconds ---" % (time.time() - startTime))
+
+
+# this is a fancier solution method I saw on reddit for dealing with the issues of replace, so I decided to implement
+# it here. Not original thought, but decided I might as well implement it
+
+newTime = time.time()
+repls = {'one': 'one1one', 'two': 'two2two', 'three': 'three3three', 'four': 'four4four', 'five': 'five5five',
+         'six': 'six6six', 'seven': 'seven7seven', 'eight': 'eight8eight', 'nine': 'nine9nine'}
+part3Nums = []
+for line in input_str.splitlines():
+    newL = line
+    for r in repls:
+        newL = newL.replace(r, repls[r])
+    firstNum = '0'
+    lastNum = '0'
+    for char in newL:
+        if char.isnumeric():
+            firstNum = char
+            break
+    for char in reversed(newL):
+        if char.isnumeric():
+            lastNum = char
+            break
+    fullNum = firstNum + lastNum
+    part3Nums.append(int(fullNum))
+print(sum(part3Nums))
+print("--- %s seconds ---" % (time.time() - newTime))
