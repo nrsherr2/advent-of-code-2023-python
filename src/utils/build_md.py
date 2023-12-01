@@ -25,11 +25,17 @@ with open("README.md", "w") as f:
 
 A new solution is initialized as follows: 
 ```
-from utils.api import get_input
+from utils.api import get_input, get_test_input
+import time
 
-input_str = get_input(1)
+current_day = 1
+input_str = get_input(current_day)
+test_str = get_test_input(current_day)
+startTime = time.time()
 
 # WRITE YOUR SOLUTION HERE
+
+print("--- %s seconds ---" % (time.time() - startTime))
 ```
 The `get_input` function takes a day and returns the content of the input for that day, this internally makes a request to obtain the input if it is not found on disk. 
 

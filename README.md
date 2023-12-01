@@ -1,19 +1,23 @@
 # Advent of code
 Problems list:
- 
+1. [01](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/01.py) 
 ## Creating a new solution
 
 ```make new``` creates a new file for today, it checks for the files in `src/` and creates the "next int" one. On the first run it will create `01.py`, later `02.py`, and so on.
 
 A new solution is initialized as follows: 
 ```
-from utils.api import get_input
+from utils.api import get_input, get_test_input
+import time
 
 current_day = 1
 input_str = get_input(current_day)
 test_str = get_test_input(current_day)
+startTime = time.time()
 
 # WRITE YOUR SOLUTION HERE
+
+print("--- %s seconds ---" % (time.time() - startTime))
 ```
 The `get_input` function takes a day and returns the content of the input for that day, this internally makes a request to obtain the input if it is not found on disk. 
 
