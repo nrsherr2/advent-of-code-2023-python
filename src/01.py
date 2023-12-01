@@ -85,20 +85,14 @@ repls = {'one': 'one1one', 'two': 'two2two', 'three': 'three3three', 'four': 'fo
          'six': 'six6six', 'seven': 'seven7seven', 'eight': 'eight8eight', 'nine': 'nine9nine'}
 part3Nums = []
 for line in input_str.splitlines():
-    newL = line
+    ln = line
     for r in repls:
-        newL = newL.replace(r, repls[r])
-    firstNum = '0'
-    lastNum = '0'
-    for char in newL:
-        if char.isnumeric():
-            firstNum = char
-            break
-    for char in reversed(newL):
-        if char.isnumeric():
-            lastNum = char
-            break
-    fullNum = firstNum + lastNum
+        ln = ln.replace(r, repls[r])
+    newL = ''
+    for r in ln:
+        if r.isnumeric():
+            newL = newL + r
+    fullNum = newL[0] + newL[-1]
     part3Nums.append(int(fullNum))
 print(sum(part3Nums))
 print("--- %s seconds ---" % (time.time() - newTime))
