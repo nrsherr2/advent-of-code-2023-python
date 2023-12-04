@@ -89,18 +89,20 @@ def part2(inp):
     return sum(rashos)
 
 
-startTime = time.time()
-
 part1TestExpected = 4361
 part1Test = part1(test_str)
 if part1Test != part1TestExpected:
     raise Exception("TEST FAILED! Expected {exp}, Got {rel}".format(exp=part1TestExpected, rel=part1Test))
-part1Real = part1(input_str)
 
 part2TestExpected = 467835
 part2Test = part2(test_str)
 if part2Test != part2TestExpected:
     raise Exception("TEST FAILED! Expected {exp}, Got {rel}".format(exp=part2TestExpected, rel=part2Test))
+
+startTime = time.time()
+
+part1Real = part1(input_str)
+
 part2Real = part2(input_str)
 
 print(part1Real)
