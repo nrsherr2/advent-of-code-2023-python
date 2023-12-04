@@ -9,19 +9,28 @@ def part1(inp):
     lines = inp.splitlines()
     okNums = []
 
+    # iterate over every line in the input
     for lineNum in range(0, len(lines)):
+        # track the current number we are building
         currentNum = ''
+        # track whether the num has a nearby symbol
         numOk = False
         line = lines[lineNum]
+        # iterate over every character in the line
         for colNum in range(0, len(line)):
             myChr = lines[lineNum][colNum]
+            # it's the end of a number, make sure we're currently parsing one
             if not myChr.isnumeric() and currentNum != '':
+                # if we found a match in the part, append to list
                 if numOk:
                     okNums.append(int(currentNum))
+                # clear the number and ok status
                 currentNum = ''
                 numOk = False
+            # a number to append onto currentNum
             elif myChr.isnumeric():
                 currentNum += myChr
+                # check all spaces around this number for a symbol
                 for i in range(-1, 2):
                     for j in range(-1, 2):
                         location = (lineNum + i, colNum + j)
@@ -30,6 +39,7 @@ def part1(inp):
                                 chk = lines[location[0]][location[1]]
                                 if not chk.isnumeric() and chk != '.':
                                     numOk = True
+        # end of line, append if we need to
         if numOk:
             okNums.append(int(currentNum))
     return sum(okNums)
