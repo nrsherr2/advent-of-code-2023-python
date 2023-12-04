@@ -24,7 +24,6 @@ def part1(fullText):
 
 def part2(fullText):
     buckets = list(map(lambda x: (x, 1), fullText.splitlines()))
-    print(buckets)
     for i in range(0, len(buckets)):
         buck = buckets[i]
         line = buck[0]
