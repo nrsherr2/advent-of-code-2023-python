@@ -1,6 +1,8 @@
 # Advent of code
 Problems list:
-1. [01](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/01.py) 
+1. [01](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/01.py)
+2. [02](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/02.py)
+3. [03](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/03.py) 
 ## Creating a new solution
 
 ```make new``` creates a new file for today, it checks for the files in `src/` and creates the "next int" one. On the first run it will create `01.py`, later `02.py`, and so on.
