@@ -1,9 +1,11 @@
 from utils.api import get_input, get_test_input
 import re
+import time
 
 current_day = 2
 input_str = get_input(current_day)
 test_str = get_test_input(current_day)
+
 
 
 def part1(inputStr):
@@ -45,13 +47,12 @@ def part2(lines):
         maxBlue = max(list(map(lambda x: int(x.split(" ")[0]), blues)))
         greens = re.findall(r"\d+ green",line)
         maxGreen = max(list(map(lambda x: int(x.split(" ")[0]), greens)))
-        print(maxRed, maxGreen, maxBlue)
         scores.append(maxRed * maxBlue * maxGreen)
-    print(scores)
     return sum(scores)
 
 
 
+startTime = time.time()
 p1TestExpected = 8
 part1Test = part1(test_str)
 if part1Test != p1TestExpected:
@@ -65,3 +66,5 @@ if part2Test != p2TestExpected:
 part2True = part2(input_str)
 print(part1True)
 print(part2True)
+
+print("--- %s seconds ---" % (time.time() - startTime))
