@@ -15,6 +15,59 @@ class AlmRange:
         return self.inputRange.start
 
 
+def part1(inpStr):
+    (seedStr, seedSoilStr, soilFertStr, fertWatStr, watLiteStr, liteTempStr, tempHumeStr, humeLocStr) = list(
+        map(lambda x: x.split(":")[1].strip(), inpStr.split("\n\n")))
+    inputSeeds = seedStr.split()
+    return doCalcs(inputSeeds, fertWatStr, humeLocStr, liteTempStr, seedSoilStr, soilFertStr, tempHumeStr, watLiteStr)
+
+
+def part2(inpStr):
+    (seedStr, seedSoilStr, soilFertStr, fertWatStr, watLiteStr, liteTempStr, tempHumeStr, humeLocStr) = list(
+        map(lambda x: x.split(":")[1].strip(), inpStr.split("\n\n")))
+    inputRanges = list(map(lambda x: range(int(x[0]), int(x[0]) + int(x[1])), chunk(seedStr.split())))
+    seedSoil = mapInput(seedSoilStr, True)
+    soilFert = mapInput(soilFertStr, True)
+    fertWat = mapInput(fertWatStr, True)
+    watLite = mapInput(watLiteStr, True)
+    liteTemp = mapInput(liteTempStr, True)
+    tempHume = mapInput(tempHumeStr, True)
+    humeLoc = mapInput(humeLocStr, True)
+
+    # I made these all different for debugging purposes
+    upRange = cutSplit(inputRanges, seedSoil)
+    upRange = cutSplit(upRange, soilFert)
+    upRange = cutSplit(upRange, fertWat)
+    upRange = cutSplit(upRange, watLite)
+    upRange = cutSplit(upRange, liteTemp)
+    upRange = cutSplit(upRange, tempHume)
+    upRange = cutSplit(upRange, humeLoc)
+    minStart = 9999999999
+    for r in upRange:
+        if r.start < minStart:
+            minStart = r.start
+    return minStart
+
+
+def doCalcs(inputSeeds, fertWatStr, humeLocStr, liteTempStr, seedSoilStr, soilFertStr, tempHumeStr, watLiteStr):
+    seedSoil = mapInput(seedSoilStr, False)
+    soilFert = mapInput(soilFertStr, False)
+    fertWat = mapInput(fertWatStr, False)
+    watLite = mapInput(watLiteStr, False)
+    liteTemp = mapInput(liteTempStr, False)
+    tempHume = mapInput(tempHumeStr, False)
+    humeLoc = mapInput(humeLocStr, False)
+    minNum = 9999999999
+    for seed in inputSeeds:
+        acc = int(seed)
+        for m in [(seedSoil, 'soil'), (soilFert, 'fertilizer'), (fertWat, 'water'), (watLite, 'light'),
+                  (liteTemp, 'temperature'), (tempHume, 'humidity'), (humeLoc, 'location')]:
+            acc = modify(acc, m[0], m[1])
+        if acc < minNum:
+            minNum = acc
+    return minNum
+
+
 def chunk(listOfWords):
     for i in range(0, len(listOfWords), 2):
         yield listOfWords[i: i + 2]
@@ -78,59 +131,6 @@ def cutSplit(ranges, almList):
                     rangeHigh = range(a.inputRange.stop, r.stop)
                     oldRanges.append(rangeHigh)
     return newRanges
-
-
-def part1(inpStr):
-    (seedStr, seedSoilStr, soilFertStr, fertWatStr, watLiteStr, liteTempStr, tempHumeStr, humeLocStr) = list(
-        map(lambda x: x.split(":")[1].strip(), inpStr.split("\n\n")))
-    inputSeeds = seedStr.split()
-    return doCalcs(inputSeeds, fertWatStr, humeLocStr, liteTempStr, seedSoilStr, soilFertStr, tempHumeStr, watLiteStr)
-
-
-def part2(inpStr):
-    (seedStr, seedSoilStr, soilFertStr, fertWatStr, watLiteStr, liteTempStr, tempHumeStr, humeLocStr) = list(
-        map(lambda x: x.split(":")[1].strip(), inpStr.split("\n\n")))
-    inputRanges = list(map(lambda x: range(int(x[0]), int(x[0]) + int(x[1])), chunk(seedStr.split())))
-    seedSoil = mapInput(seedSoilStr, True)
-    soilFert = mapInput(soilFertStr, True)
-    fertWat = mapInput(fertWatStr, True)
-    watLite = mapInput(watLiteStr, True)
-    liteTemp = mapInput(liteTempStr, True)
-    tempHume = mapInput(tempHumeStr, True)
-    humeLoc = mapInput(humeLocStr, True)
-
-    # I made these all different for debugging purposes
-    upRange = cutSplit(inputRanges, seedSoil)
-    upRange = cutSplit(upRange, soilFert)
-    upRange = cutSplit(upRange, fertWat)
-    upRange = cutSplit(upRange, watLite)
-    upRange = cutSplit(upRange, liteTemp)
-    upRange = cutSplit(upRange, tempHume)
-    upRange = cutSplit(upRange, humeLoc)
-    minStart = 9999999999
-    for r in upRange:
-        if r.start < minStart:
-            minStart = r.start
-    return minStart
-
-
-def doCalcs(inputSeeds, fertWatStr, humeLocStr, liteTempStr, seedSoilStr, soilFertStr, tempHumeStr, watLiteStr):
-    seedSoil = mapInput(seedSoilStr, False)
-    soilFert = mapInput(soilFertStr, False)
-    fertWat = mapInput(fertWatStr, False)
-    watLite = mapInput(watLiteStr, False)
-    liteTemp = mapInput(liteTempStr, False)
-    tempHume = mapInput(tempHumeStr, False)
-    humeLoc = mapInput(humeLocStr, False)
-    minNum = 9999999999
-    for seed in inputSeeds:
-        acc = int(seed)
-        for m in [(seedSoil, 'soil'), (soilFert, 'fertilizer'), (fertWat, 'water'), (watLite, 'light'),
-                  (liteTemp, 'temperature'), (tempHume, 'humidity'), (humeLoc, 'location')]:
-            acc = modify(acc, m[0], m[1])
-        if acc < minNum:
-            minNum = acc
-    return minNum
 
 
 part1TestExpected = 35
