@@ -1,6 +1,5 @@
 from utils.api import get_input, get_test_input
 import time
-import itertools
 
 current_day = 5
 input_str = get_input(current_day)
@@ -66,12 +65,7 @@ def modify(num, almRanges, rangeName):
 def cutSplit(ranges, almList):
     oldRanges = ranges
     newRanges = []
-    # print('cs')
-    # print('cs', list(map(lambda x: x.inputRange, almList)))
-    # print('cs', oldRanges)
-    # print('cs')
     while oldRanges:
-        # print(oldRanges)
         r = oldRanges[0]
         oldRanges.remove(r)
         for a in almList:
@@ -79,7 +73,6 @@ def cutSplit(ranges, almList):
                 if a.inputRange.start <= r.stop <= a.inputRange.stop:
                     newRanges.append(range(r.start + a.destOffset, r.stop + a.destOffset))
                 else:
-                    # print(a.inputRange, r)
                     rangeLow = range(r.start, a.inputRange.stop)
                     newRanges.append(rangeLow)
                     rangeHigh = range(a.inputRange.stop, r.stop)
@@ -98,7 +91,6 @@ def part2(inpStr):
     (seedStr, seedSoilStr, soilFertStr, fertWatStr, watLiteStr, liteTempStr, tempHumeStr, humeLocStr) = list(
         map(lambda x: x.split(":")[1].strip(), inpStr.split("\n\n")))
     inputRanges = list(map(lambda x: range(int(x[0]), int(x[0]) + int(x[1])), chunk(seedStr.split())))
-    # print(inputRanges)
     seedSoil = mapInput(seedSoilStr, True)
     soilFert = mapInput(soilFertStr, True)
     fertWat = mapInput(fertWatStr, True)
@@ -120,16 +112,6 @@ def part2(inpStr):
         if r.start < minStart:
             minStart = r.start
     return minStart
-    # for almList in almLists:
-    #     cutSplit(inputRanges,almList)
-
-    # print('ranges crushed')
-    # b = 9999999999
-    # for inputSeeds in inputRanges:
-    #     a = doCalcs(inputSeeds, fertWatStr, humeLocStr, liteTempStr, seedSoilStr, soilFertStr, tempHumeStr, watLiteStr)
-    #     if a < b:
-    #         b = a
-    # return b
 
 
 def doCalcs(inputSeeds, fertWatStr, humeLocStr, liteTempStr, seedSoilStr, soilFertStr, tempHumeStr, watLiteStr):
@@ -143,11 +125,9 @@ def doCalcs(inputSeeds, fertWatStr, humeLocStr, liteTempStr, seedSoilStr, soilFe
     minNum = 9999999999
     for seed in inputSeeds:
         acc = int(seed)
-        # print("Seed %s" % acc)
         for m in [(seedSoil, 'soil'), (soilFert, 'fertilizer'), (fertWat, 'water'), (watLite, 'light'),
                   (liteTemp, 'temperature'), (tempHume, 'humidity'), (humeLoc, 'location')]:
             acc = modify(acc, m[0], m[1])
-        # print('final:', acc, '\n\n')
         if acc < minNum:
             minNum = acc
     return minNum
