@@ -11,18 +11,32 @@ Problems list:
 ```make new``` creates a new file for today, it checks for the files in `src/` and creates the "next int" one. On the first run it will create `01.py`, later `02.py`, and so on.
 
 A new solution is initialized as follows: 
-```
-from utils.api import get_input, get_test_input
+```python
+from utils.api import get_input, get_test_input, print_hlight, print_tlight
 import time
 
 current_day = 1
 input_str = get_input(current_day)
 test_str = get_test_input(current_day)
+
+def part1(fullInput):
+    print(fullInput)
+
+def part2(fullInput):
+    print(fullInput)
+
+# solutions corner
+
 startTime = time.time()
 
-# WRITE YOUR SOLUTION HERE
+part1Test = part1(test_str)
+print_hlight(part1(input_str))
 
-print("--- %s seconds ---" % (time.time() - startTime))
+part2Test = part2(test_str)
+print_hlight(part2(test_str))
+
+print_tlight("--- %s seconds ---" % (time.time() - startTime))
+
 ```
 The `get_input` function takes a day and returns the content of the input for that day, this internally makes a request to obtain the input if it is not found on disk. 
 
