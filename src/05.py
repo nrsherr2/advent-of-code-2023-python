@@ -1,4 +1,4 @@
-from utils.api import get_input, get_test_input
+from utils.api import get_input, get_test_input, print_hlight, print_tlight
 import time
 
 current_day = 5
@@ -142,11 +142,11 @@ p1Test = part1(test_str)
 if p1Test != part1TestExpected:
     raise Exception("Test Failed! Expected {}, Received {}".format(part1TestExpected, p1Test))
 # print(p1Test)
-print(part1(input_str))
+print_hlight(part1(input_str))
 
 p2Test = part2(test_str)
 if p2Test != part2TestExpected:
     raise Exception("Test Failed! Expected {}, Received {}".format(part2TestExpected, p2Test))
-print(part2(input_str))
+print_hlight(part2(input_str))
 
-print("--- %s seconds ---" % (time.time() - startTime))
+print_tlight("--- %s seconds ---" % (time.time() - startTime))

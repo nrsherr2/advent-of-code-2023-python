@@ -1,4 +1,4 @@
-from utils.api import get_input, get_test_input
+from utils.api import get_input, get_test_input, print_hlight, print_tlight
 import re
 import time
 
@@ -64,7 +64,7 @@ part2Test = part2(test_str)
 if part2Test != p2TestExpected:
     raise Exception("TEST FAILED! Expected {exp}, Got {rel}".format(exp=p2TestExpected, rel=part2Test))
 part2True = part2(input_str)
-print(part1True)
-print(part2True)
+print_hlight(part1True)
+print_hlight(part2True)
 
-print("--- %s seconds ---" % (time.time() - startTime))
+print_tlight("--- %s seconds ---" % (time.time() - startTime))

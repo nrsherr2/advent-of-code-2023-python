@@ -11,6 +11,13 @@ def get_url(year, day):
     return f"https://adventofcode.com/{year}/day/{day}/input"
 
 
+def print_hlight(text):
+    print('\033[43m\033[92m', text, '\033[0m')
+
+def print_tlight(text):
+    print('\033[93m', text, '\033[0m')
+
+
 YEAR = 2023
 SESSION_ID_FILE = "session.cookie"
 SESSION = get_session_id(SESSION_ID_FILE)

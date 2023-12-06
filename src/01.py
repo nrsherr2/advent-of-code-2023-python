@@ -1,4 +1,4 @@
-from utils.api import get_input, get_test_input
+from utils.api import get_input, get_test_input, print_hlight, print_tlight
 import time
 
 current_day = 1
@@ -21,7 +21,7 @@ for line in input_str.splitlines():
             break
     fullNum = firstNum + lastNum
     part1Nums.append(int(fullNum))
-print(sum(part1Nums))
+print_hlight(sum(part1Nums))
 
 nums = {"one": '1', "two": '2', "three": '3', "four": '4', "five": '5', "six": '6', "seven": '7', "eight": '8',
         "nine": '9'}
@@ -72,9 +72,9 @@ for line in input_str.splitlines():
     fullNum = firstNum + lastNum
     part2Nums.append(int(fullNum))
 
-print(sum(part2Nums))
+print_hlight(sum(part2Nums))
 
-print("--- %s seconds ---" % (time.time() - startTime))
+print_tlight("--- %s seconds ---" % (time.time() - startTime))
 
 
 # this is a fancier solution method I saw on reddit for dealing with the issues of replace, so I decided to implement
@@ -94,5 +94,5 @@ for line in input_str.splitlines():
             newL = newL + r
     fullNum = newL[0] + newL[-1]
     part3Nums.append(int(fullNum))
-print(sum(part3Nums))
-print("--- %s seconds ---" % (time.time() - newTime))
+print_hlight(sum(part3Nums))
+print_tlight("--- %s seconds ---" % (time.time() - newTime))

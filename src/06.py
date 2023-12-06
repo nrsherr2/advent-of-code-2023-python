@@ -1,4 +1,4 @@
-from utils.api import get_input, get_test_input
+from utils.api import get_input, get_test_input, print_hlight, print_tlight
 import time
 import math
 
@@ -48,13 +48,13 @@ part1TestExpected = 288
 if part1Test != part1TestExpected:
     raise Exception(part1Test, part1TestExpected)
 
-print(part1(input_str))
+print_hlight(part1(input_str))
 
 part2Test = part2(test_str)
 part2TestExpected = 71503
 if part2Test != part2TestExpected:
     raise Exception(part2Test, part2TestExpected)
 
-print(part2(input_str))
+print_hlight(part2(input_str))
 
-print("--- %s seconds ---" % (time.time() - startTime))
+print_tlight("--- %s seconds ---" % (time.time() - startTime))

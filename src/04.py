@@ -1,4 +1,4 @@
-from utils.api import get_input, get_test_input
+from utils.api import get_input, get_test_input, print_hlight, print_tlight
 import time
 
 current_day = 4
@@ -55,7 +55,7 @@ startTime = time.time()
 part1Real = part1(input_str)
 part2Real = part2(input_str)
 
-print(part1Real)
-print(part2Real)
+print_hlight(part1Real)
+print_hlight(part2Real)
 
-print("--- %s seconds ---" % (time.time() - startTime))
+print_tlight("--- %s seconds ---" % (time.time() - startTime))
