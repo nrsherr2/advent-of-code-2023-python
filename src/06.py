@@ -18,6 +18,7 @@ def part1(fullInput):
 
 
 def calcNumWins(givenTime, goal):
+    # see https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/etc/quadratto.png for context
     (lowerBound, upperBound) = solveQuadratic(givenTime, goal)
     if math.ceil(lowerBound) == lowerBound:
         lowerBound += 1
