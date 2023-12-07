@@ -1,6 +1,6 @@
 import os
 
-l = filter(lambda x: "__" not in x and ".py" in x, os.listdir("src"))
+l = filter(lambda x: "__" not in x and 'all' not in x and ".py" in x, os.listdir("src"))
 l = list(l)
 n = int(sorted(l)[-1][:2]) + 1 if len(l) > 0 else 1
 
