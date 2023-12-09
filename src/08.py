@@ -42,7 +42,7 @@ def part2(fullInput):
     r = 1
     for s in startingNodes:
         solved = solveSteps(s, nodes, steps)
-        r = math.lcm(r, solved)
+        r = abs(r * solved) // math.gcd(r, solved)
     return r
 
 
