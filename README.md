@@ -5,7 +5,10 @@ Problems list:
 3. [03](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/03.py)
 4. [04](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/04.py)
 5. [05](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/05.py)
-6. [06](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/06.py) 
+6. [06](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/06.py)
+7. [07](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/07.py)
+8. [08](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/08.py)
+9. [09](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/09.py) 
 ## Creating a new solution
 
 ```make new``` creates a new file for today, it checks for the files in `src/` and creates the "next int" one. On the first run it will create `01.py`, later `02.py`, and so on.
