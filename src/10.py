@@ -177,7 +177,7 @@ def part2(fullInput):
             bugLocs.add(testLoc)
     activeThisRound = set() | bugLocs
     while activeThisRound:
-        print(len(activeThisRound))
+        # print(len(activeThisRound))
         newRound = set()
         for b in activeThisRound:
             for i in range(-1, 2):
