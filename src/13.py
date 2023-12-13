@@ -31,7 +31,6 @@ def detectReflect(block, excludeHorizontal, excludeVertical):
     # print('horiz', horizontalBlock)
     verticalBlock = transpose(block.splitlines())
     # print('verti', verticalBlock)
-    s = 0
     horizontals = []
     verticals = []
     maxBound = max(len(horizontalBlock), len(verticalBlock))
@@ -40,14 +39,14 @@ def detectReflect(block, excludeHorizontal, excludeVertical):
         if detectReflectHorizontal(horizontalBlock, i, excludeHorizontal):
             # print('detected horizontal', i)
             horizontals.append(i)
-            s += i * 100
+            return i * 100, horizontals,verticals
         # print('reflect vertical', i)
         if detectReflectHorizontal(verticalBlock, i, excludeVertical):
             # print('detected vertical', i)
             verticals.append(i)
-            s += i
+            return i, horizontals,verticals
         i += 1
-    return s, horizontals, verticals
+    raise Exception('no reflections found')
 
 
 def num_char_difference(side1, side2):
