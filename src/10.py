@@ -122,25 +122,25 @@ def part2(fullInput):
             currentPipe = p
     usedPipes = []
     direction = 'd'
-    bugLocs = set()
+    inLocs = set()
     while currentPipe not in usedPipes:
         testLoc = None
         nextLoc = None
         if direction == 'd':
             nextLoc = (currentPipe[0] + 1, currentPipe[1])
-            testLoc = (currentPipe[0], currentPipe[1] - 1)
+            testLoc = (currentPipe[0], currentPipe[1] + 1)
         if direction == 'u':
             nextLoc = (currentPipe[0] - 1, currentPipe[1])
-            testLoc = (currentPipe[0], currentPipe[1] + 1)
+            testLoc = (currentPipe[0], currentPipe[1] - 1)
         if direction == 'r':
             nextLoc = (currentPipe[0], currentPipe[1] + 1)
-            testLoc = (currentPipe[0] + 1, currentPipe[1])
+            testLoc = (currentPipe[0] - 1, currentPipe[1])
         if direction == 'l':
             nextLoc = (currentPipe[0], currentPipe[1] - 1)
-            testLoc = (currentPipe[0] - 1, currentPipe[1])
+            testLoc = (currentPipe[0] + 1, currentPipe[1])
 
         if 0 <= testLoc[0] < len(lines) and 0 <= testLoc[1] < len(lines[0]) and testLoc not in pipes:
-            bugLocs.add(testLoc)
+            inLocs.add(testLoc)
 
         usedPipes.append(currentPipe)
         currentPipe = nextLoc
@@ -148,34 +148,34 @@ def part2(fullInput):
         if charAtNext == 'J':
             if direction == 'd':
                 direction = 'l'
-                testLoc = (currentPipe[0], currentPipe[1] - 1)
+                testLoc = (currentPipe[0], currentPipe[1] + 1)
             elif direction == 'r':
                 direction = 'u'
-                testLoc = (currentPipe[0] + 1, currentPipe[1])
+                testLoc = (currentPipe[0] - 1, currentPipe[1])
         elif charAtNext == 'L':
             if direction == 'd':
                 direction = 'r'
-                testLoc = (currentPipe[0], currentPipe[1] - 1)
+                testLoc = (currentPipe[0], currentPipe[1] + 1)
             elif direction == 'l':
                 direction = 'u'
-                testLoc = (currentPipe[0] - 1, currentPipe[1])
+                testLoc = (currentPipe[0] + 1, currentPipe[1])
         elif charAtNext == '7':
             if direction == 'r':
                 direction = 'd'
-                testLoc = (currentPipe[0] + 1, currentPipe[1])
+                testLoc = (currentPipe[0] - 1, currentPipe[1])
             elif direction == 'u':
                 direction = 'l'
-                testLoc = (currentPipe[0], currentPipe[1] + 1)
+                testLoc = (currentPipe[0], currentPipe[1] - 1)
         elif charAtNext == 'F':
             if direction == 'u':
                 direction = 'r'
-                testLoc = (currentPipe[0], currentPipe[1] + 1)
+                testLoc = (currentPipe[0], currentPipe[1] - 1)
             elif direction == 'l':
                 direction = 'd'
-                testLoc = (currentPipe[0] - 1, currentPipe[1])
+                testLoc = (currentPipe[0] + 1, currentPipe[1])
         if 0 <= testLoc[0] < len(lines) and 0 <= testLoc[1] < len(lines[0]) and testLoc not in pipes:
-            bugLocs.add(testLoc)
-    activeThisRound = set() | bugLocs
+            inLocs.add(testLoc)
+    activeThisRound = set() | inLocs
     while activeThisRound:
         # print(len(activeThisRound))
         newRound = set()
@@ -184,32 +184,31 @@ def part2(fullInput):
                 for j in range(-1, 2):
                     testLoc = (b[0] + i, b[1] + j)
                     if 0 <= testLoc[0] < len(lines) and 0 <= testLoc[1] < len(
-                            lines[0]) and testLoc not in pipes and testLoc not in bugLocs:
-                        bugLocs.add(testLoc)
+                            lines[0]) and testLoc not in pipes and testLoc not in inLocs:
+                        inLocs.add(testLoc)
                         newRound.add(testLoc)
         activeThisRound = newRound
-    freeLocs = 0
-    for i in range(len(lines)):
-        for j in range(len(lines[i])):
-            if (i, j) not in pipes and (i, j) not in bugLocs:
-                freeLocs += 1
+    # freeLocs = 0
+    # for i in range(len(lines)):
+    #     for j in range(len(lines[i])):
+    #         if (i, j) not in pipes and (i, j) not in bugLocs:
+    #             freeLocs += 1
     # s = ''
     # for i in range(len(lines)):
     #     for j in range(len(lines[i])):
     #         myC = lines[i][j]
-    #         if (i, j) in pipes and (i, j) in bugLocs:
+    #         if (i, j) in pipes and (i, j) in inLocs:
     #             s += '\033[41m{}\033[0m'.format(myC)
     #         elif (i, j) in pipes:
     #             s += '\033[36m{}\033[0m'.format(myC)
-    #         elif (i, j) in bugLocs:
-    #             s += '\033[30m{}\033[0m'.format(myC)
-    #         else:
+    #         elif (i, j) in inLocs:
     #             s += '\033[95m{}\033[0m'.format(myC)
-    #             freeLocs += 1
+    #         else:
+    #             s += '\033[30m{}\033[0m'.format(myC)
     #     s += '\n'
     #
     # print(s)
-    return freeLocs
+    return len(inLocs)
 
 
 def determineDirectionOfS(startI, startJ, lines):
