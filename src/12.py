@@ -1,4 +1,4 @@
-from functools import cache
+from functools import lru_cache
 
 from utils.api import get_input, get_test_input, print_hlight, print_tlight
 import time
@@ -6,7 +6,6 @@ import time
 current_day = 12
 input_str = get_input(current_day)
 test_str = get_test_input(current_day)
-
 
 def part1(fullInput):
     solnSizes = list(map(lambda x: picross(x), fullInput.splitlines()))
@@ -57,7 +56,7 @@ def picross(line):
     totalNumFilled = sum(nums)
     numDots = totalNumBoxes - totalNumFilled
 
-    @cache
+    @lru_cache(maxsize=None)
     def fillNum(currentString, numIdx, remainingDots, justPlacedBox):
         """
         work your way through the guide string, branching on the letter given in the guide
