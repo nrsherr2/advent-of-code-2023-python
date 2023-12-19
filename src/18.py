@@ -46,7 +46,27 @@ def part1(fullInput):
 
 
 def part2(fullInput):
-    print(fullInput)
+    numPointsAlongBoundary = 0
+    vertices = []
+    currentLoc = (0, 0)
+    for line in fullInput.splitlines():
+        hx = line.split()[-1][2:-1]
+        dir_ = int(hx[-1])
+        numSpcs = int(hx[:-1], 16)
+        numPointsAlongBoundary += numSpcs
+        trns = [(0, 1), (1, 0), (0, -1), (-1, 0)][dir_]
+        nextLoc = (currentLoc[0] + (trns[0] * numSpcs), currentLoc[1] + (trns[1] * numSpcs))
+        vertices.append(nextLoc)
+        currentLoc = nextLoc
+    summy = 0
+    for i in range(len(vertices) - 1):
+        ei, eip = vertices[i:i + 2]
+        yS = ei[1] + eip[1]
+        xS = ei[0] - eip[0]
+        summy += yS * xS
+    beeOver = numPointsAlongBoundary // 2
+    image = (abs(summy) + numPointsAlongBoundary + 2) // 2 #(abs(summy) // 2) + 2 - beeOver
+    return image
 
 
 # solutions corner
@@ -59,7 +79,10 @@ if part1Test != part1TestExpected:
     raise Exception(part1Test, part1TestExpected)
 print_hlight(part1(input_str))
 
-# part2Test = part2(test_str)
-# print_hlight(part2(input_str))
+part2Test = part2(test_str)
+part2TestExpected = 952408144115
+if part2Test != part2TestExpected:
+    raise Exception(part2Test, part2TestExpected)
+print_hlight(part2(input_str))
 
 print_tlight("--- %s seconds ---" % (time.time() - startTime))

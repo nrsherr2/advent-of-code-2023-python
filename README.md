@@ -12,7 +12,12 @@ Problems list:
 10. [10](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/10.py)
 11. [11](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/11.py)
 12. [12](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/12.py)
-13. [13](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/13.py) 
+13. [13](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/13.py)
+14. [14](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/14.py)
+15. [15](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/15.py)
+16. [16](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/16.py)
+17. [17](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/17.py)
+18. [18](https://github.com/nrsherr2/advent-of-code-2023-python/blob/main/src/18.py) 
 ## Creating a new solution
 
 ```make new``` creates a new file for today, it checks for the files in `src/` and creates the "next int" one. On the first run it will create `01.py`, later `02.py`, and so on.
