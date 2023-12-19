@@ -64,8 +64,7 @@ def part2(fullInput):
         yS = ei[1] + eip[1]
         xS = ei[0] - eip[0]
         summy += yS * xS
-    beeOver = numPointsAlongBoundary // 2
-    image = (abs(summy) + numPointsAlongBoundary + 2) // 2 #(abs(summy) // 2) + 2 - beeOver
+    image = (abs(summy) + numPointsAlongBoundary + 2) // 2
     return image
 
 
